@@ -1,0 +1,69 @@
+{{template "base" .}}
+
+{{define "title"}}Парсинг веб-страниц{{end}}
+{{define "h1Title"}}<a class="WebScrapingLogo" href="/ui/static">Web Scraping</a>{{end}}
+{{define "Git"}}<a href="#" target="_blank">Git Web Scraping</a>{{end}}
+
+{{define "main"}}
+    <main class="webScrapingMain no-select">
+        <section class="webScrapingSection">
+            <h2 class="errors"></h2>
+            <form class="webScrapingForm" action="/webscrapingFormHandler" method="post">
+                <fieldset class="webScrapingFildsetUrlText">
+                    <fieldset>
+                        <label class="webScrapingLabelUrl" for="url">Введите url адрес *</label>
+                        <input class="webScrapingInpUrl" type="url" name="url" id="url" placeholder="Пример: http://google.com" required>
+                    </fieldset>
+                    <fieldset>
+                        <label class="webScrapingLabelText" for="queryString">Введите команду запроса *</label>
+                        <input class="webScrapingInpText" type="text" name="queryString" id="queryString" placeholder="Пример: .list li a .title" required>
+                    </fieldset>
+                </fieldset>
+
+                <fieldset class="webScrapingFildsetAtributs">
+                    <fieldset class="webScrapingFildsetAtributsWrapper">
+                        <label class="webScrapingFildsetAtributsValueLabel" for="valueAtribut">Текст или значения атрибута *</label>
+                        <fieldset class="webScrapingFildsetAtributsInner">
+                            <fieldset>
+                                <label class="webScrapingRadioTextLabel" for="text">Текст:</label>
+                                <input class="webScrapingRadioText" type="radio" name="tip" value="text" id="text" checked>
+                            </fieldset>
+                            <fieldset>
+                                <label class="webScrapingRadioAtributLabel" for="atribut">Атрибуты:</label>
+                                <input class="webScrapingRadioAtribut" type="radio" name="tip" value="atribut" id="atribut">
+                            </fieldset>
+                        </fieldset>
+                    </fieldset>
+                    <fieldset class="webScrapingFildsetAtributsValue">
+                        <label class="webScrapingFildsetAtributsValueLabel " for="valueAtribut">Введите название атрибута</label>
+                        <input class="webScrapingValueAtribut webScrapingValueAtributDisabled" value="href" type="text" name="valueAtribut" id="valueAtribut" placeholder="Пример: href" required>
+                    </fieldset>
+                </fieldset>
+                
+                <fieldset class="webScrapingTextAreaFieldset">
+                    <textarea class="webScrapingTextArea" name="result" cols="30" rows="10" placeholder="
+                                            Как пользоваться
+1 Введите адрес сайта Н-р: https://www.google.com/search?q=google
+2 Заполните строку запроса, каждый тег, класс или айди должен быть через пробел Н-р: .list li a .title
+3 Выбираем значения атрибута: Текст или Атрибуты
+4 Если необходимо вытащить Н-р анкор ссылки <a href='google.com'>Google</a>, анкором будет Google то выбираем Текст
+5 Если необходимо вытащить Якорь(адрес) ссылки, то выбираем Атрибуты и пишем название искомого атрибута Н-р href
+6 Тест: Url https://cyberleninka.ru/article/c/basic-medicine, запрос .list li a .title, тип Текст
+                        "></textarea>
+                </fieldset>
+                
+                <fieldset class="webScrapingFormBtnWrapper">
+                    <div class="webScrapingFilesWrapper">
+                        <a class="webScrapingFiles webScrapingFilesTxt" href="/webscraping/download" ></a>
+
+                        <div class="charactersWrapper">
+                            <p class="characters">Количество символов: <span class="charactersSpan">...</span></p>
+                            <p class="numberOfWords">Количество символов без пробелов: <span class="numberOfWordsSpan">...</span></p>
+                        </div>
+                    </div>
+                    <input class="webScrapingFormBtn" type="submit" name="formBtn" value="Парсить">
+                </fieldset>
+            </form>
+        </section>
+    </main>
+{{end}}
